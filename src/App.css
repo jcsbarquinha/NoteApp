@@ -1,38 +1,283 @@
-.App {
+
+.app {
+  font-family: 'Arial', sans-serif;
+  background: #334c5f;
+  padding: 20px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.appp {
+  font-family: 'Arial', sans-serif;
+  background: #48647b;
+  padding: 20px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header {
   text-align: center;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: bold;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.week-selector {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.week-selector button {
+  background: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-section {
+  background: #ffffff;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-section h2 {
+  border-bottom: 1px solid #000000;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-grow: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.section-title-container {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.section-name {
+  font-size: 20px; /* Adjust the font size as needed */
+  padding-left: 2px;
+}
+
+.delete-section {
+  cursor: pointer;
+  color: #333;
+  font-size: 12px; /* Adjust the font size as needed */
+  font-weight: normal; /* Remove the bold style */
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.collapse-button {
+  cursor: pointer;
+  color:  #00000084;
+  font-size: 10px;
+  margin-left: 8px;
+}
+
+.notes-container {
+  margin-top: 10px;
+}
+
+.note {
+  background: #f9f9f9;
+  border: 2px solid #ddd;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.note.is-dragging {
+  background: lightgreen;
+}
+
+.note-section.is-over {
+  background: lightblue;
+}
+
+.delete {
+  cursor: pointer;
+  color: #333;
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.add-note {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-section {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1px;
+  text-align: center;
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+  color:  #000000d8;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 10px;
+  line-height: 20px;
+  margin: 0 auto;
+}
+
+.note.completed {
+  text-decoration: line-through;
+  opacity: 0.35;
+  background-color: #93b893;
+}
+
+.note-content {
+  flex-grow: 1;
+}
+
+.note {
+  padding: 5px;
+  padding-left: 10px;
+  margin-bottom:  10pxpx;
+}
+
+input[type='text'] {
+  width: calc(100% - 20px);
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.note.is-dragging {
+  background-color: #e1ffc7;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.note-section.is-over {
+  background-color: #f7f7f7;
+}
+
+.week-title-container {
+  display: flex; /* This will lay out its children (.week-title) in a row */
+  flex-wrap: nowrap; /* This allows items to wrap to the next line if there's not enough space */
+  gap: 10px; /* This adds some space between the items */
+  justify-content: start; /* Align items to the start of the container */
+  align-items: center; /* Vertically center the items */
+  margin-left: 5px;
+  padding: 0; /* Reset any padding that might be pushing items down */
+  list-style-type: none; /* If .week-title-container is a ul, this removes bullet points */
+  overflow-x: auto;
+}
+
+.week-title {
+  flex: 1; /* This allows each .week-title to grow and take up equal space */
+  margin: 5px; /* Adjust margins as needed */
+  background-color: #f0f0f0; /* Example background color */
+  padding: 10px; /* Add some padding inside the titles */
+  box-sizing: border-box; /* This ensures padding is included in the width */
+  min-width: 100px; /* Set a minimum width for each title */
+  max-width: calc(33.333% - 10px); /* Adjust this value based on the number of items you want per row */
+  position: relative;
+  border-radius: 5px;
+  flex-shrink: 0; /* Prevents flex items from shrinking smaller than their content */
+  cursor: grab; 
+}
+
+
+.week-title .delete-week {
+  position: absolute;
+  font-size: 12px;
+  top: 0;
+  right: 0;
+  padding: 5px; /* Adjust as needed */
+  cursor: pointer;
+}
+
+.week-title.selected {
+  cursor: pointer;
+  color: black; /* Set the text color to black */
+  text-decoration: none; /* Remove underlines */
+  font-weight: bold;
+  background-color: #48647b; /* or any color you prefer */
+  color: white; /* Set the font-weight to bold */
+}
+
+.week-title {
+  cursor: pointer;
+  color: black; /* Set the text color to black */
+  text-decoration: none; /* Remove underlines */
+  font-weight: bold; /* Set the font-weight to bold */
+}
+
+.week-title:hover {
+  text-decoration: underline; /* Add underlines on hover */
+}
+
+
+.week-link {
+  text-decoration: none; /* Removes the underline */
+  color: black; /* Sets the text color to black */
+  /* Add other styles as needed */
+}
+
+/* This targets the week-link when it is hovered to maintain its style */
+.week-link:hover,
+.week-link:active,
+.week-link:focus {
+  text-decoration: none; /* Keeps the underline removed on hover, focus */
+  color: black; /* Ensures the color remains black */
+  cursor: grabbing;
+}
+
+.add-week {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1px;
+  text-align: center;
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+  color:  #000000d8;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 10px;
+  line-height: 20px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+/* New week input field - adjust to match the 'add more' button */
+.new-week-input {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 16px; /* Adjust as necessary to match your design */
+  margin: 10px 0; /* Adjust as necessary */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(100% - 22px); /* Compensate for padding and border */
 }
